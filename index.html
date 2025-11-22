@@ -800,17 +800,17 @@
                     
                     const formData = new FormData();
                     formData.append('prompt', prompt);
-                    formData.append('data', imageFile);
+                    formData.append('image', imageFile);
                     
                     if (maskFile) {
-                        formData.append('data', maskFile);
+                        formData.append('image', maskFile);
                         sendToWebhook(formData, 'edit');
                     } else {
                         // Если маска не загружена, используем нарисованную на canvas
                         if (canvas) {
                             canvas.toBlob(blob => {
                                 if (blob) {
-                                    formData.append('data', blob, 'mask.png');
+                                    formData.append('image', blob, 'mask.png');
                                     sendToWebhook(formData, 'edit');
                                 } else {
                                     showMessage('Ошибка при создании маски', true);
