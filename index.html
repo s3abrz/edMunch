@@ -803,14 +803,14 @@
                     formData.append('data', imageFile);
                     
                     if (maskFile) {
-                        formData.append('mask', maskFile);
+                        formData.append('data', maskFile);
                         sendToWebhook(formData, 'edit');
                     } else {
                         // Если маска не загружена, используем нарисованную на canvas
                         if (canvas) {
                             canvas.toBlob(blob => {
                                 if (blob) {
-                                    formData.append('mask', blob, 'mask.png');
+                                    formData.append('data', blob, 'mask.png');
                                     sendToWebhook(formData, 'edit');
                                 } else {
                                     showMessage('Ошибка при создании маски', true);
